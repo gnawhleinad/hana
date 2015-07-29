@@ -12,6 +12,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     v.customize ["modifyvm", :id, "--memory", 1024]
   end
 
+  config.vm.network :forwarded_port, guest:80, host:80
+  config.vm.network :private_network, type: "dhcp"
+
   config.vm.provision "shell" do |s|
     s.path = "install.sh"
     s.args = ["lemonldap-ng"]
