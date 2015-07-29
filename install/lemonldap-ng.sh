@@ -46,9 +46,13 @@ a2ensite test-apache2.conf
 
 a2enmod perl
 
-sed '/cgi-script/s/^#*/#/' -i /etc/lemonldap-ng/manager-apache2.conf
-sed '/perl-script/s/#//' -i /etc/lemonldap-ng/manager-apache2.conf
-sed '/PerlResponse/s/#//' -i /etc/lemonldap-ng/manager-apache2.conf
+sed -i '/useLocalConf =/s/;//' /etc/lemonldap-ng/lemonldap-ng.ini
+sed -i 's/;\(trustedDomains = \).*/\1*/' /etc/lemonldap-ng/lemonldap-ng.ini
+sed -i 's/\(protection = \).*/\1none/' /etc/lemonldap-ng/lemonldap-ng.ini
+
+sed -i '/cgi-script/s/^#*/#/' /etc/lemonldap-ng/manager-apache2.conf
+sed -i '/perl-script/s/#//' /etc/lemonldap-ng/manager-apache2.conf
+sed -i '/PerlResponse/s/#//' /etc/lemonldap-ng/manager-apache2.conf
 
 apache2ctl configtest
 apache2ctl restart
