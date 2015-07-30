@@ -17,6 +17,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.provision "shell" do |s|
     s.path = "install.sh"
-    s.args = ["lemonldap-ng"]
+    s.args = ["lemonldap-ng", "hosts"]
   end
 end
