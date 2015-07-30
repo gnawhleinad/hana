@@ -32,7 +32,7 @@ liblemonldap-ng-common-perl liblemonldap-ng-common-perl/domain string hana.test
 liblemonldap-ng-common-perl liblemonldap-ng-common-perl/ldapBase string dc=hana,dc=test
 OHANA
 
-apt-get install -qq lemonldap-ng
+apt-get install -qq lemonldap-ng liblasso-perl
 
 sed -i 's/example\.com/hana.test/g' \
 	/etc/lemonldap-ng/* \
@@ -45,6 +45,7 @@ a2ensite manager-apache2.conf
 a2ensite test-apache2.conf
 
 a2enmod perl
+a2enmod rewrite
 
 sed -i '/useLocalConf =/s/;//' /etc/lemonldap-ng/lemonldap-ng.ini
 sed -i 's/;\(trustedDomains = \).*/\1*/' /etc/lemonldap-ng/lemonldap-ng.ini
