@@ -39,6 +39,17 @@ sed -i 's/example\.com/hana.test/g' \
 	/var/lib/lemonldap-ng/conf/lmConf-1 \
 	/var/lib/lemonldap-ng/test/index.pl
 
+cat >> /var/lib/lemonldap-ng/conf/lmConf-1 << OHANA
+samlOrganizationDisplayName
+	hana.test
+
+samlOrganizationName
+	hana.test
+
+samlOrganizationURL
+	http://hana.test
+OHANA
+
 a2ensite handler-apache2.conf
 a2ensite portal-apache2.conf
 a2ensite manager-apache2.conf
